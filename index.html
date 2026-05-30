@@ -467,14 +467,15 @@
       const mp=(path,rot)=>({motionPath:{path,align:path,alignOrigin:[.5,.5],autoRotate:rot}});
       const tl=gsap.timeline({scrollTrigger:{trigger:'#journey',start:'top top',end:'+=2000',scrub:.6,pin:true,anticipatePin:1}});
       tl.from('.map .node',{opacity:0,scale:.5,transformOrigin:'center',stagger:.12,duration:.5,ease:'back.out(2)'});
-      tl.set('#pa',{opacity:1})
-        .to(A,{strokeDashoffset:0,duration:1,ease:'power1.inOut'})
-        .to('#pa',{...mp('#routeA',90),duration:1,ease:'power1.inOut'},'<')
-        .to('#pa',{opacity:0,duration:.2});
+      // Guy goes first (lands 4:09), then Celine (lands 5:40)
       tl.set('#pb',{opacity:1})
         .to(B,{strokeDashoffset:0,duration:1,ease:'power1.inOut'})
         .to('#pb',{...mp('#routeB',90),duration:1,ease:'power1.inOut'},'<')
         .to('#pb',{opacity:0,duration:.2});
+      tl.set('#pa',{opacity:1})
+        .to(A,{strokeDashoffset:0,duration:1,ease:'power1.inOut'})
+        .to('#pa',{...mp('#routeA',90),duration:1,ease:'power1.inOut'},'<')
+        .to('#pa',{opacity:0,duration:.2});
       tl.set('#pc',{opacity:1})
         .to(C,{strokeDashoffset:0,duration:1,ease:'power1.inOut'})
         .to('#pc',{...mp('#routeC',false),duration:1,ease:'power1.inOut'},'<')
