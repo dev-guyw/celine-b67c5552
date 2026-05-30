@@ -75,16 +75,18 @@
   #journey .inner{width:min(900px,92vw)}
   #journey h2{font-size:clamp(30px,6vw,60px);text-align:center}
   #journey .lead{text-align:center;color:rgba(255,255,255,.6);margin:16px auto 6px;font-size:16px}
-  .map{width:100%;max-width:600px;margin:26px auto 0;display:block;overflow:visible}
-  @media(max-width:640px){#journey .inner{width:94vw}.map{max-width:100%}}
-  .route{fill:none;stroke-width:4.5;stroke-linecap:round}
+  .map{width:100%;max-width:620px;margin:26px auto 0;display:block;overflow:hidden;
+    border-radius:18px;box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+  @media(max-width:640px){#journey .inner{width:96vw}.map{max-width:100%}}
+  .route{fill:none;stroke-width:0.95;stroke-linecap:round}
   .rA{stroke:url(#gA)}.rB{stroke:url(#gB)}.rC{stroke:url(#gC)}
   .city-dot{fill:#fff}
-  .city-ring{fill:none;stroke:rgba(255,255,255,.32);stroke-width:2}
-  .city-lbl{fill:#fff;font:600 19px "General Sans",sans-serif;letter-spacing:.02em}
-  .city-sub{fill:rgba(255,255,255,.5);font:500 12px "General Sans",sans-serif;letter-spacing:.16em}
-  .leglbl{font:600 14px "General Sans",sans-serif}
-  .plane{font-size:30px}
+  .city-ring{fill:none;stroke:rgba(255,255,255,.7);stroke-width:0.45}
+  .city-lbl,.city-sub,.leglbl{paint-order:stroke;stroke:#08121a;stroke-width:.55px;stroke-linejoin:round}
+  .city-lbl{fill:#fff;font:600 3.9px "General Sans",sans-serif;letter-spacing:.02em}
+  .city-sub{fill:rgba(255,255,255,.7);font:500 2.5px "General Sans",sans-serif;letter-spacing:.12em}
+  .leglbl{font:600 3.2px "General Sans",sans-serif}
+  .plane{font-size:5.6px}
 
   #plan{background:var(--cream);color:var(--ink)}
   #plan .inner{text-align:left;width:min(760px,92vw)}
@@ -233,39 +235,47 @@
   <div class="inner">
     <h2 class="display kin" data-kin>The little map of us</h2>
     <p class="lead" data-rise>You from Madrid, me from Guatemala. We meet in the middle, then fly home together.</p>
-    <svg class="map" viewBox="0 0 640 600" aria-hidden="true">
+    <svg class="map" viewBox="74 22 116 82" aria-hidden="true">
       <defs>
-        <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a5c"/><stop offset="1" stop-color="#FF6B4A"/></linearGradient>
-        <linearGradient id="gB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#0E7C86"/><stop offset="1" stop-color="#3fb6c4"/></linearGradient>
+        <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb38f"/><stop offset="1" stop-color="#FF6B4A"/></linearGradient>
+        <linearGradient id="gB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#0E7C86"/><stop offset="1" stop-color="#5fd0dc"/></linearGradient>
         <linearGradient id="gC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe39a"/><stop offset="1" stop-color="#f0b450"/></linearGradient>
+        <radialGradient id="vig" cx="50%" cy="46%" r="62%">
+          <stop offset="50%" stop-color="#08121a" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#08121a" stop-opacity="0.92"/>
+        </radialGradient>
       </defs>
-      <path id="routeA" class="route rA" d="M512,96 C372,44 250,150 250,300"/>
-      <path id="routeB" class="route rB" d="M196,474 C140,420 158,352 250,300"/>
-      <path id="routeC" class="route rC" d="M250,300 C338,352 312,430 196,474"/>
+      <image href="assets/earth.jpg" x="0" y="0" width="360" height="180" preserveAspectRatio="none"/>
+      <rect x="74" y="22" width="116" height="82" fill="#08121a" opacity="0.40"/>
+      <rect x="74" y="22" width="116" height="82" fill="url(#vig)"/>
 
-      <text class="leglbl" x="380" y="150" fill="#ff8a5c">Celine</text>
-      <text class="leglbl" x="150" y="398" fill="#5fd0dc" text-anchor="end">me</text>
-      <text class="leglbl" x="322" y="402" fill="#f0b450">us</text>
+      <path id="routeA" class="route rA" d="M176.3,49.6 Q 140,33 93.15,68.84"/>
+      <path id="routeB" class="route rB" d="M89.49,75.37 Q 83,71.5 93.15,68.84"/>
+      <path id="routeC" class="route rC" d="M93.15,68.84 Q 100,72.5 89.49,75.37"/>
+
+      <text class="leglbl" x="139" y="40" fill="#ff8a5c" text-anchor="middle">Celine</text>
+      <text class="leglbl" x="84" y="72.8" fill="#5fd0dc" text-anchor="end">Guy</text>
+      <text class="leglbl" x="101.5" y="73.6" fill="#f0b450" text-anchor="start">us</text>
 
       <g class="node">
-        <circle class="city-ring" cx="512" cy="96" r="16"/><circle class="city-dot" cx="512" cy="96" r="6"/>
-        <text class="city-sub" x="512" y="48" text-anchor="middle">MAD</text>
-        <text class="city-lbl" x="512" y="74" text-anchor="middle">Madrid</text>
+        <circle class="city-ring" cx="176.3" cy="49.6" r="2.4"/><circle class="city-dot" cx="176.3" cy="49.6" r="1.2"/>
+        <text class="city-sub" x="176.3" y="42.4" text-anchor="middle">MAD</text>
+        <text class="city-lbl" x="176.3" y="46.1" text-anchor="middle">Madrid</text>
       </g>
       <g class="node">
-        <circle class="city-ring" cx="250" cy="300" r="16"/><circle class="city-dot" cx="250" cy="300" r="6"/>
-        <text class="city-lbl" x="284" y="296" text-anchor="start">Cancun</text>
-        <text class="city-sub" x="284" y="314" text-anchor="start">CUN</text>
+        <circle class="city-ring" cx="93.15" cy="68.84" r="2.4"/><circle class="city-dot" cx="93.15" cy="68.84" r="1.2"/>
+        <text class="city-lbl" x="96.6" y="66.4" text-anchor="start">Cancun</text>
+        <text class="city-sub" x="96.6" y="69.8" text-anchor="start">CUN</text>
       </g>
       <g class="node">
-        <circle class="city-ring" cx="196" cy="474" r="16"/><circle class="city-dot" cx="196" cy="474" r="6"/>
-        <text class="city-lbl" x="196" y="516" text-anchor="middle">Guatemala</text>
-        <text class="city-sub" x="196" y="536" text-anchor="middle">GUA</text>
+        <circle class="city-ring" cx="89.49" cy="75.37" r="2.4"/><circle class="city-dot" cx="89.49" cy="75.37" r="1.2"/>
+        <text class="city-lbl" x="89.49" y="81.6" text-anchor="middle">Guatemala</text>
+        <text class="city-sub" x="89.49" y="85.1" text-anchor="middle">GUA</text>
       </g>
 
-      <text id="pa" class="plane" x="512" y="96" text-anchor="middle" dominant-baseline="central">✈️</text>
-      <text id="pb" class="plane" x="196" y="474" text-anchor="middle" dominant-baseline="central">✈️</text>
-      <text id="pc" class="plane" x="250" y="300" text-anchor="middle" dominant-baseline="central">💛</text>
+      <text id="pa" class="plane" x="176.3" y="49.6" text-anchor="middle" dominant-baseline="central">✈️</text>
+      <text id="pb" class="plane" x="89.49" y="75.37" text-anchor="middle" dominant-baseline="central">✈️</text>
+      <text id="pc" class="plane" x="93.15" y="68.84" text-anchor="middle" dominant-baseline="central">💛</text>
     </svg>
   </div>
 </section>
