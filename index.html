@@ -75,12 +75,16 @@
   #journey .inner{width:min(900px,92vw)}
   #journey h2{font-size:clamp(30px,6vw,60px);text-align:center}
   #journey .lead{text-align:center;color:rgba(255,255,255,.6);margin:16px auto 6px;font-size:16px}
-  .map{width:100%;max-width:780px;margin:10px auto 0;display:block;overflow:visible}
-  .route{fill:none;stroke:url(#rg);stroke-width:3;stroke-linecap:round}
+  .map{width:100%;max-width:600px;margin:26px auto 0;display:block;overflow:visible}
+  @media(max-width:640px){#journey .inner{width:94vw}.map{max-width:100%}}
+  .route{fill:none;stroke-width:4.5;stroke-linecap:round}
+  .rA{stroke:url(#gA)}.rB{stroke:url(#gB)}.rC{stroke:url(#gC)}
   .city-dot{fill:#fff}
-  .city-ring{fill:none;stroke:rgba(255,255,255,.3);stroke-width:1.5}
-  .city-lbl{fill:rgba(255,255,255,.9);font:600 14px "General Sans",sans-serif;letter-spacing:.04em}
-  .city-sub{fill:rgba(255,255,255,.45);font:500 11px "General Sans",sans-serif;letter-spacing:.18em}
+  .city-ring{fill:none;stroke:rgba(255,255,255,.32);stroke-width:2}
+  .city-lbl{fill:#fff;font:600 19px "General Sans",sans-serif;letter-spacing:.02em}
+  .city-sub{fill:rgba(255,255,255,.5);font:500 12px "General Sans",sans-serif;letter-spacing:.16em}
+  .leglbl{font:600 14px "General Sans",sans-serif}
+  .plane{font-size:30px}
 
   #plan{background:var(--cream);color:var(--ink)}
   #plan .inner{text-align:left;width:min(760px,92vw)}
@@ -228,30 +232,40 @@
 <section class="scene" id="journey">
   <div class="inner">
     <h2 class="display kin" data-kin>The little map of us</h2>
-    <p class="lead" data-rise>Two cities, one beach in the middle.</p>
-    <svg class="map" viewBox="0 0 800 430" aria-hidden="true">
+    <p class="lead" data-rise>You from Madrid, me from Guatemala. We meet in the middle, then fly home together.</p>
+    <svg class="map" viewBox="0 0 640 600" aria-hidden="true">
       <defs>
-        <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#FF6B4A"/><stop offset=".55" stop-color="#f0b450"/><stop offset="1" stop-color="#7fdce6"/>
-        </linearGradient>
+        <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a5c"/><stop offset="1" stop-color="#FF6B4A"/></linearGradient>
+        <linearGradient id="gB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#0E7C86"/><stop offset="1" stop-color="#3fb6c4"/></linearGradient>
+        <linearGradient id="gC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe39a"/><stop offset="1" stop-color="#f0b450"/></linearGradient>
       </defs>
-      <path id="route" class="route" d="M662,96 C520,18 360,96 318,250 C306,300 286,322 262,352"/>
-      <g>
-        <circle class="city-ring" cx="662" cy="96" r="13"/><circle class="city-dot" cx="662" cy="96" r="5"/>
-        <text class="city-lbl" x="640" y="58" text-anchor="middle">Madrid</text>
-        <text class="city-sub" x="640" y="76" text-anchor="middle">MAD</text>
+      <path id="routeA" class="route rA" d="M512,96 C372,44 250,150 250,300"/>
+      <path id="routeB" class="route rB" d="M196,474 C140,420 158,352 250,300"/>
+      <path id="routeC" class="route rC" d="M250,300 C338,352 312,430 196,474"/>
+
+      <text class="leglbl" x="380" y="150" fill="#ff8a5c">Celine</text>
+      <text class="leglbl" x="150" y="398" fill="#5fd0dc" text-anchor="end">me</text>
+      <text class="leglbl" x="322" y="402" fill="#f0b450">us</text>
+
+      <g class="node">
+        <circle class="city-ring" cx="512" cy="96" r="16"/><circle class="city-dot" cx="512" cy="96" r="6"/>
+        <text class="city-sub" x="512" y="48" text-anchor="middle">MAD</text>
+        <text class="city-lbl" x="512" y="74" text-anchor="middle">Madrid</text>
       </g>
-      <g>
-        <circle class="city-ring" cx="318" cy="250" r="13"/><circle class="city-dot" cx="318" cy="250" r="5"/>
-        <text class="city-lbl" x="318" y="228" text-anchor="middle">Cancun</text>
-        <text class="city-sub" x="318" y="210" text-anchor="middle">CUN</text>
+      <g class="node">
+        <circle class="city-ring" cx="250" cy="300" r="16"/><circle class="city-dot" cx="250" cy="300" r="6"/>
+        <text class="city-lbl" x="284" y="296" text-anchor="start">Cancun</text>
+        <text class="city-sub" x="284" y="314" text-anchor="start">CUN</text>
       </g>
-      <g>
-        <circle class="city-ring" cx="262" cy="352" r="13"/><circle class="city-dot" cx="262" cy="352" r="5"/>
-        <text class="city-lbl" x="262" y="392" text-anchor="middle">Guatemala</text>
-        <text class="city-sub" x="262" y="410" text-anchor="middle">GUA</text>
+      <g class="node">
+        <circle class="city-ring" cx="196" cy="474" r="16"/><circle class="city-dot" cx="196" cy="474" r="6"/>
+        <text class="city-lbl" x="196" y="516" text-anchor="middle">Guatemala</text>
+        <text class="city-sub" x="196" y="536" text-anchor="middle">GUA</text>
       </g>
-      <text id="plane" font-size="26" text-anchor="middle" dominant-baseline="middle">✈️</text>
+
+      <text id="pa" class="plane" x="512" y="96" text-anchor="middle" dominant-baseline="central">✈️</text>
+      <text id="pb" class="plane" x="196" y="474" text-anchor="middle" dominant-baseline="central">✈️</text>
+      <text id="pc" class="plane" x="250" y="300" text-anchor="middle" dominant-baseline="central">💛</text>
     </svg>
   </div>
 </section>
@@ -435,14 +449,27 @@
     const sw=splitScrub(document.querySelector('#story .scrub'));
     gsap.to(sw,{opacity:1,stagger:.5,ease:'none',scrollTrigger:{trigger:'#story',start:'top 60%',end:'bottom 75%',scrub:true}});
 
-    // journey: draw route + fly plane
-    const route=document.getElementById('route'),L=route.getTotalLength();
-    route.style.strokeDasharray=L;route.style.strokeDashoffset=L;
-    gsap.to(route,{strokeDashoffset:0,ease:'none',scrollTrigger:{trigger:'#journey',start:'top 70%',end:'bottom 65%',scrub:true}});
-    gsap.to('#plane',{motionPath:{path:'#route',align:'#route',alignOrigin:[.5,.5],autoRotate:90},ease:'none',
-      scrollTrigger:{trigger:'#journey',start:'top 70%',end:'bottom 65%',scrub:true}});
-    gsap.from('.map g',{opacity:0,scale:.6,transformOrigin:'center',stagger:.15,duration:.6,ease:'back.out(2)',
-      scrollTrigger:{trigger:'#journey',start:'top 70%'}});
+    // journey: three legs, pinned sequence (Celine -> me -> us together)
+    (function(){
+      const A=document.getElementById('routeA'),B=document.getElementById('routeB'),C=document.getElementById('routeC');
+      [A,B,C].forEach(p=>{const l=p.getTotalLength();p.style.strokeDasharray=l;p.style.strokeDashoffset=l;});
+      gsap.set(['#pa','#pb','#pc'],{opacity:0});
+      const mp=(path,rot)=>({motionPath:{path,align:path,alignOrigin:[.5,.5],autoRotate:rot}});
+      const tl=gsap.timeline({scrollTrigger:{trigger:'#journey',start:'top top',end:'+=2000',scrub:.6,pin:true,anticipatePin:1}});
+      tl.from('.map .node',{opacity:0,scale:.5,transformOrigin:'center',stagger:.12,duration:.5,ease:'back.out(2)'});
+      tl.set('#pa',{opacity:1})
+        .to(A,{strokeDashoffset:0,duration:1,ease:'power1.inOut'})
+        .to('#pa',{...mp('#routeA',90),duration:1,ease:'power1.inOut'},'<')
+        .to('#pa',{opacity:0,duration:.2});
+      tl.set('#pb',{opacity:1})
+        .to(B,{strokeDashoffset:0,duration:1,ease:'power1.inOut'})
+        .to('#pb',{...mp('#routeB',90),duration:1,ease:'power1.inOut'},'<')
+        .to('#pb',{opacity:0,duration:.2});
+      tl.set('#pc',{opacity:1})
+        .to(C,{strokeDashoffset:0,duration:1,ease:'power1.inOut'})
+        .to('#pc',{...mp('#routeC',false),duration:1,ease:'power1.inOut'},'<')
+        .to('#pc',{scale:1.5,yoyo:true,repeat:1,duration:.25,transformOrigin:'center'});
+    })();
 
     // plan steps
     gsap.utils.toArray('[data-step]').forEach((s,i)=>{
